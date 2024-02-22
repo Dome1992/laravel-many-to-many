@@ -17,7 +17,7 @@ class TypeSeeder extends Seeder
      */
     public function run()
     {
-        // STO CREANDO 5 NUOVI ELEMENTI NELLA TABELLA TYPES DEL MIO DATABASE
+        // STO CREANDO 4 NUOVI ELEMENTI NELLA TABELLA TYPES DEL MIO DATABASE
         Type::factory() ->count(4)->create();
     }
 }
