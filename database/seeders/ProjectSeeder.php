@@ -8,6 +8,9 @@ use Illuminate\Database\Seeder;
 //IMPORTARE IL MODELS PROJECT
 use App\Models\Project;
 
+//IMPORTARE IL MODELS TYPE
+use App\Models\Type;
+
 class ProjectSeeder extends Seeder
 {
     /**
@@ -18,6 +21,14 @@ class ProjectSeeder extends Seeder
     public function run()
     {
         // STO CREANDO  20 NUOVI ELEMENTI NELLA TABELLA PROJECTS DEL MIO DATABASE
-        Project::factory()->count(20)->create();
+        Project::factory()
+            ->count(10)
+            ->make()
+            ->each(function($project) {
+
+                $type = Type :: inRandomOrder() ->first();
+                $project -> type() ->associate($type);
+                $project -> save();
+            });
     }
 }

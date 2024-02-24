@@ -18,6 +18,7 @@ class TypeFactory extends Factory
     {
         return [
             'name'=> fake() -> word(),
+            'description'=> fake() -> sentence(),
         ];
     }
 }

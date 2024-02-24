@@ -9,9 +9,10 @@ class Type extends Model
 {
     use HasFactory;
 
-    public function projects() {
+    public function projects() { //Projects: Al plurale perché un tipo può essere associato a molti progetti
 
-        return $this->hasMany(Project::class); //QUESTO PASSAGGIO CI SERVE PER METTERE IN RELAZIONE UNO-A-MOLTI CON PROJECT
+        
+        return $this->hasMany(Project::class); //QUESTO PASSAGGIO CI SERVE PER METTERE IN RELAZIONE UNO-A-MOLTI DAL MODELLO TYPE AL MODELLO PROJECT
     }
 
 }
