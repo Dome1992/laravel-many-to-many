@@ -20,13 +20,14 @@ class ProjectSeeder extends Seeder
      */
     public function run()
     {
-        // STO CREANDO  20 NUOVI ELEMENTI NELLA TABELLA PROJECTS DEL MIO DATABASE
+        // STO CREANDO  10 NUOVI ELEMENTI NELLA TABELLA PROJECTS DEL MIO DATABASE
         Project::factory()
             ->count(10)
             ->make()
             ->each(function($project) {
 
                 $type = Type :: inRandomOrder() ->first();
+                
                 $project -> type() ->associate($type);
                 $project -> save();
             });
