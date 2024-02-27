@@ -29,5 +29,5 @@ Route::post('/projects/create' , [ProjectController :: class, 'store'])
 // ROTTA PER IL METODO EDIT/UPDATE
 Route::get('/projects/{id}/edit' , [ProjectController :: class, 'edit'])  
     -> name('project.edit');
-Route::post('/projects/{id}' , [ProjectController :: class, 'update'])  
+Route::put('/projects/{id}/edit' , [ProjectController :: class, 'update'])  
     -> name('project.update');
