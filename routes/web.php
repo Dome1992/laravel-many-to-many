@@ -19,3 +19,15 @@ Route::get('/projects' , [ProjectController :: class, 'index'])
 
 Route::get('/types' , [TypeController :: class, 'index'])
     -> name('type.index');
+
+// ROTTA PER IL METODO CREATE/STORE
+Route::get('/projects/create' , [ProjectController :: class, 'create'])  
+    -> name('project.create');
+Route::post('/projects/create' , [ProjectController :: class, 'store'])  
+    -> name('project.store');
+
+// ROTTA PER IL METODO EDIT/UPDATE
+Route::get('/projects/{id}/edit' , [ProjectController :: class, 'edit'])  
+    -> name('project.edit');
+Route::post('/projects/{id}' , [ProjectController :: class, 'update'])  
+    -> name('project.update');

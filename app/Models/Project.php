@@ -14,4 +14,9 @@ class Project extends Model
         // DEFINISCE UNA REAZIONE "uno a molti" TRA IL MODELLO CORRENTE PROJECT ED IL MODELLO TYPE
         return $this -> belongsTo(Type :: class);
     }
+    
+    public function technologies() {
+
+        return $this -> belongsToMany(Technology :: class);
+    }
 }

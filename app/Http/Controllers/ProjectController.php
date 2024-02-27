@@ -4,8 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-//IMPORTIAMO IL MODEL 
+//IMPORTIAMO IL MODEL PROJECT
 use App\Models\Project;
+
+//IMPORTIAMO IL MODEL TYPE 
+use App\Models\Type;
+
+//IMPORTIAMO IL TECHNOLOGY 
+use App\Models\Technology;
 
 class ProjectController extends Controller
 {
@@ -15,4 +21,64 @@ class ProjectController extends Controller
 
         return view('pages.project.index' , compact ('projects'));
     }
+
+    
+    public function create() {
+
+        $types = Type :: all();
+        $technologies = Technology :: all();
+
+        return view('pages.project.create' , compact ('types', 'technologies'));
+    }
+
+    public function store(Request $request) {
+
+        $data = $request ->all();
+        
+        $type = Type :: find($data['type_id']);
+
+        $project = new Project();
+        $project -> name = $data['name'];
+        $project -> description = $data['description'];
+
+        $project -> type() -> associate($type);
+
+        $project -> save();
+
+        $project -> technologies() -> attach($data['technology_id']);
+
+        return redirect() -> route('project.index');
+    }
+
+
+
+    public function edit($id) {
+
+        $types = Type :: all();
+        $technologies = Technology :: all();
+
+        $project = Project :: find($id);
+
+        return view('pages.project.edit' , compact ('types', 'technologies', 'project'));
+    }
+
+   public function update(Request $request, $id) {
+
+    $data = $request ->all();
+        
+    $type = Type :: find($data['type_id']);
+
+    $project = new Project();
+    $project -> name = $data['name'];
+    $project -> description = $data['description'];
+
+    $project -> type() -> associate($type);
+
+    $project -> save();
+
+    $project -> technologies() -> attach($data['technology_id']);
+
+    return redirect() -> route('project.index');  
+
+   }
 }
